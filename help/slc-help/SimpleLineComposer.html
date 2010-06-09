@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Style-Type" content="text/css">
+        <title>SimpleLineComposer</title>
+    </head>
+    <body>
+        <h1>SimpleLineComposer</h1>
+        <p>Composes a piece based on a single input array. Uses BellGen and PipesGen to
+        produce sound.</p>
+        <h3>Basic Usage:</h3>
+        <p>
+            To use the default input array:
+            <pre>SimpleLineComposer.new.playPiece</pre>
+        </p>
+        <p>
+            Otherwise:
+            <pre>SimpleLineComposer.new(array).playPiece</pre>
+        </p>
+        <h3>The Algorithm:</h3>
+        <ul>
+            <li>Determine how many voices should be playing at each time.</li>
+            <li>Generate rests where those voices aren't playing.</li>
+            <li>
+                For each voice: determine whether to use BellGen or PipesGen, and then
+                get a pattern to play from whichever one is chosen.
+            </li>
+        </ul>
+        
+        <h2>Class Methods:</h2>
+        <ul>
+            <li><strong>*new(input)</strong> Create a new SimpleLineComposer that uses <code>input</code> to create pieces.</em></li>
+        </ul>
+        
+        <h2>Instance Variables</h2>
+        <ul>
+            <li><strong>line</strong> the input array</li>
+            <li><strong>piece</strong> the last generated piece</li>
+            <li><strong>bellGen</strong> the BellGen instance used for sound generation</li>
+            <li><strong>pipesGen</strong> the PipesGen instance used for sound generation</li>
+        </ul>
+        
+        <h2>Instance Methods</h2>
+        <ul>
+            <li><strong>genPiece</strong> Generates a piece (a Pattern), stores it as <code>piece</code>, and then returns it.</li>
+            <li><strong>playPiece</strong> Plays <code>piece</code>. If <code>piece</code> is <code>nil</code>, calls <code>genPiece</code> first.</li>
+            <li><strong>genVoiceCounts(intensities)</strong> Returns the number of voices that should be playing at each input step.</li>
+            <li><strong>separateVoices(intensities)</strong> Returns an array of intensity arrays for each voice. A given voice's intensity array is the same as the global intensities array when it is playing, and 0 when it is not.</li>
+            <li><strong>restUntil(first,voice = 0)</strong> Returns a Pattern that rests for <code>first</code> steps. <code>voice</code> is added as a key to the pattern for debugging purposes.</li>
+            <li><strong>voiceFor(intensities,length,voice = 0)</strong> Randomly chooses to get a pattern from either BellGen or PipesGen. Returns the generated pattern.</li>
+            <li><strong>segmentVoice(voice,intensities,voiceNumber)</strong> Given a voice, generate rests and sound patterns in the appropriate places. Returns an array of patterns.</li>
+            <li><strong>voiceGen(intensities)</strong> Generates and returns a piece (a Pattern).</li>
+        </ul>
+    </body>
+</html>

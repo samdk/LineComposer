@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Style-Type" content="text/css">
+        <title>PipesGen</title>
+    </head>
+    <body>
+        <h1>PipesGen</h1>
+        <p>Produces patterns based on variations of the included <code>pipes</code> SynthDef.</p>
+        <h3>Basic Usage:</h3>
+        <p>
+            Generate (and store) a <code>pipes</code> variation:
+            <pre>PipesGen.new.genStorePipeSynth(intensity)</pre>
+        </p>
+        <p>
+            Generate a Pattern:
+            <pre>PipesGen.new.genPattern(intensities)</pre>
+        </p>
+        
+        <h2>Instance Methods</h2>
+        <ul>
+            <li><strong>pipesGen(index = 0,count = 1,n = 5,intervals = [0,3,5,7,10,12,15,17,19])</strong> Returns (but <strong>does not store</strong>) a SynthDef based on <code>pipes</code>. <code>index</code> is an integer to be appended to the SynthDef name to avoid collisions. <code>count</code> is the number of Klanks to mix together. <code>n</code> is the number of oscillators per Klank. <code>intervals</code> is the scale degrees of the base frequency of each successive Klank.</li>
+            <li><strong>randIntervals(length = 20)</strong> Returns a random array of intervals.</li>
+            <li><strong>genPipeSynth(intensity = nil,intervals = nil)</strong> Returns a pipe synth generated semi-randomly based on <code>intensity</code> and <code>intervals</code>. <code>intervals</code> and <code>intensity are set randomly if unspecified.</code></li>
+            <li><strong>genStorePipeSynth(intensity = nil,intervals = nil)</strong> Calls <code>genPipeSynth</code> and stores (and returns) the resulting synth.</li>
+            <li><strong>genPattern(intensities,length,voice)</strong> Generates and returns a Pattern with a random synth based on <code>intensities</code> that lasts for <code>length</code> steps. <code>voice</code> is added as a key to the Pattern for debugging purposes.</li>
+        </ul>
+    </body>
+</html>

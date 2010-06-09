@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Style-Type" content="text/css">
+        <title>BellGen</title>
+    </head>
+    <body>
+        <h1>BellGen</h1>
+        <p>Produces patterns based on the included <code>bell</code> SynthDef.</p>
+        <h3>Basic Usage:</h3>
+        <p>
+            (where <code>intensities</code> is an array of numbers from 0 to 1)
+            <pre>BellGen.new.genPattern(intensities)</pre>
+        </p>
+        <h3>The <code>genPattern</code> Algorithm:</h3>
+        <ul>
+            <li>Choose a base frequency multiplier.</li>
+            <li>Choose whether all notes should be the same, or whether they should vary randomly.</li>
+            <li>Choose whether the rhythm should be subdivided into 2, 3, or 4 sections.</li>
+            <li>If randomly chosen to do so (based on <code>intensity</code>), further subdivide each section into two sections. Each of those subsections may then again be further subdivided into two sections once more.</li>
+            <li>Randomly (weighted by <code>intensity</code>) choose which sections and subsections will be played.</li>
+        </ul>
+        
+        <h2>Class Methods:</h2>
+        <ul>
+            <li><strong>*new</strong> Stores the <code>bell</code> SynthDef.</li>
+        </ul>
+        
+        <h2>Instance Methods</h2>
+        <ul>
+            <li><strong>chooseActive(active,subdivisions,depth)</strong> Determines which of the <code>subdivisions</code> will be played. The number that will be played is <code>active</code>. <code>depth</code> is the depth of the subdivision (0 for top-level sections, 2 for twice-nested subsections).</li>
+            <li><strong>subGen(intensity,subdivisions,depth)</strong> Generates subsections as necessary with a maximum depth of 2.</li>
+            <li><strong>genPattern(intensities,base = 2,voice = 0)</strong> Generates and returns a pattern based on <code>intensities</code>. <code>base</code> is the base length of the pattern. <code>voice</code> is used as a key to the pattern for debugging purposes.</li>
+        </ul>
+    </body>
+</html>
